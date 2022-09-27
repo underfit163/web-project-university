@@ -3,6 +3,7 @@ package com.underfit.trpo.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor

@@ -28,12 +28,10 @@ public class Exam {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subjectidfk")
-    @ToString.Exclude
     private Subject subjectidfk;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacheridfk")
-    @ToString.Exclude
     private Teacher teacheridfk;
 
     public Exam(String passtype, Integer totalhours, Integer semester, Subject subjectidfk, Teacher teacheridfk) {
