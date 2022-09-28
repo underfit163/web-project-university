@@ -19,6 +19,27 @@ public class MarkController {
         return markService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public MarkDto getMark(@PathVariable Long id) {
+        return markService.getById(id);
+    }
 
+    @PostMapping
+    public MarkDto create(@RequestBody MarkDto markDto) {
+        if (markDto.getId() != null) {
+            markDto.setId(null);
+        }
+        return markService.save(markDto);
+    }
 
+    @PutMapping("/{id}")
+    public MarkDto update(@RequestParam Long id, @RequestBody MarkDto markDto) {
+        markDto.setId(id);
+        return markService.save(markDto);
+    }
+
+    @DeleteMapping()
+    public void delete(@RequestParam Long id) {
+        markService.delete(id);
+    }
 }
