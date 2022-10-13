@@ -3,11 +3,12 @@ package com.underfit.trpo.controller;
 import com.underfit.trpo.dto.MarkDto;
 import com.underfit.trpo.service.MarkServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/marks")
@@ -25,6 +26,7 @@ public class MarkController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public MarkDto create(@RequestBody MarkDto markDto) {
         if (markDto.getId() != null) {
             markDto.setId(null);
@@ -33,12 +35,14 @@ public class MarkController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public MarkDto update(@RequestParam Long id, @RequestBody MarkDto markDto) {
         markDto.setId(id);
         return markService.save(markDto);
     }
 
     @DeleteMapping()
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@RequestParam Long id) {
         markService.delete(id);
     }

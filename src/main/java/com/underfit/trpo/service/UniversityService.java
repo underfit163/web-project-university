@@ -10,5 +10,4 @@ public interface UniversityService<T> {
     T save(T dto);
 
     void delete(Long id);
-
 }

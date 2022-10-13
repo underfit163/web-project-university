@@ -2,7 +2,9 @@ package com.underfit.trpo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.underfit.trpo.entities.Exam;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
@@ -11,6 +13,8 @@ import java.io.Serializable;
  * A DTO for the {@link com.underfit.trpo.entities.Exam} entity
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ExamDto implements Serializable {
     private Long id;
     private String passtype;
