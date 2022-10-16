@@ -6,7 +6,6 @@ import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * A DTO for the {@link com.underfit.trpo.entities.Mark} entity
