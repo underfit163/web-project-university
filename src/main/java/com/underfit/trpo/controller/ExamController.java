@@ -3,6 +3,7 @@ package com.underfit.trpo.controller;
 import com.underfit.trpo.dto.ExamDto;
 import com.underfit.trpo.service.ExamServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class ExamController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ExamDto create(@RequestBody ExamDto dto) {
         if (dto.getId() != null) {
             dto.setId(null);
@@ -33,12 +35,14 @@ public class ExamController {
     }
 
     @PutMapping(path = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ExamDto update(@PathVariable Long id, @RequestBody ExamDto dto) {
         dto.setId(id);
         return examService.save(dto);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable Long id) {
         examService.delete(id);
     }

@@ -1,6 +1,5 @@
 package com.underfit.trpo.dto;
 
-import com.underfit.trpo.entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

@@ -1,6 +1,5 @@
 package com.underfit.trpo.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.underfit.trpo.entities.Exam;
 import lombok.AllArgsConstructor;
 import lombok.Data;

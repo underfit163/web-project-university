@@ -20,7 +20,6 @@ public class Mark {
 
     @Column(name = "evaluation", length = 10)
     private String evaluation;
-
     @Column(name = "passdate", nullable = false)
     private LocalDate passdate;
 

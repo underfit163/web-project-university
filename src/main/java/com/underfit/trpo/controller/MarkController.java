@@ -36,14 +36,14 @@ public class MarkController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public MarkDto update(@RequestParam Long id, @RequestBody MarkDto markDto) {
+    public MarkDto update(@PathVariable Long id, @RequestBody MarkDto markDto) {
         markDto.setId(id);
         return markService.save(markDto);
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void delete(@RequestParam Long id) {
+    public void delete(@PathVariable Long id) {
         markService.delete(id);
     }
 }

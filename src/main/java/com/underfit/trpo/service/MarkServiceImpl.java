@@ -29,7 +29,8 @@ public class MarkServiceImpl implements UniversityService<MarkDto> {
 
     @Override
     public MarkDto getById(Long id) {
-        return MarkDto.toDto(markRepository.findById(id).orElse(null));
+        Mark mark = markRepository.findById(id).orElse(null);
+        return mark != null ? MarkDto.toDto(mark) : null;
     }
 
     @Override

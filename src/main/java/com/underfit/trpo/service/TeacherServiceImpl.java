@@ -1,8 +1,6 @@
 package com.underfit.trpo.service;
 
-import com.underfit.trpo.dao.SubjectRepository;
 import com.underfit.trpo.dao.TeacherRepository;
-import com.underfit.trpo.dto.SubjectDto;
 import com.underfit.trpo.dto.TeacherDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

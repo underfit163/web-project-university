@@ -1,23 +1,26 @@
 package com.underfit.trpo.service;
 
 import com.underfit.trpo.dao.ExamRepository;
+import com.underfit.trpo.dao.SubjectRepository;
+import com.underfit.trpo.dao.TeacherRepository;
 import com.underfit.trpo.dto.ExamDto;
 import com.underfit.trpo.entities.Exam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ExamServiceImpl implements UniversityService<ExamDto> {
     private final ExamRepository examRepository;
+    private final SubjectRepository subjectRepository;
+    private final TeacherRepository teacherRepository;
 
     @Override
     public List<ExamDto> getAll() {
-        return examRepository.findAll()
+        return examRepository.findAllExams().orElseThrow()
                 .stream()
                 .map(ExamDto::toDto)
                 .collect(Collectors.toList());
@@ -25,12 +28,16 @@ public class ExamServiceImpl implements UniversityService<ExamDto> {
 
     @Override
     public ExamDto getById(Long id) {
-        return ExamDto.toDto(examRepository.findById(id).orElse(null));
+        Exam exam = examRepository.findById(id).orElse(null);
+        return exam != null ? ExamDto.toDto(exam) : null;
     }
 
     @Override
     public ExamDto save(ExamDto dto) {
-        return ExamDto.toDto(examRepository.save(dto.toEntity()));
+        Exam exam = dto.toEntity();
+        exam.setTeacheridfk(teacherRepository.findById(dto.getTeacheridfk()).orElseThrow());
+        exam.setSubjectidfk(subjectRepository.findById(dto.getSubjectidfk()).orElseThrow());
+        return ExamDto.toDto(examRepository.save(exam));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.underfit.trpo.dto;
 
-import com.underfit.trpo.entities.Mark;
 import com.underfit.trpo.entities.Teacher;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;

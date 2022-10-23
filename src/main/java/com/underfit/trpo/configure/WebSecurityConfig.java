@@ -1,4 +1,4 @@
-package com.underfit.trpo;
+package com.underfit.trpo.configure;
 
 import com.underfit.trpo.security.AuthEntryPointJwt;
 import com.underfit.trpo.security.AuthTokenFilter;
@@ -7,12 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.authentication.AuthenticationManagerFactoryBean;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)//что это?
+@EnableGlobalMethodSecurity(prePostEnabled = true)//Обеспечивает безопасность АОП для методов. Это позволяет @PreAuthorize, @PostAuthorize
 @RequiredArgsConstructor
 public class WebSecurityConfig {
     private final UserDetailsService userDetailsService;// сервис отвечает за поиск информации о юзерах в БД(в где-нибудь).

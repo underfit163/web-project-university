@@ -3,6 +3,7 @@ package com.underfit.trpo.controller;
 import com.underfit.trpo.dto.SubjectDto;
 import com.underfit.trpo.service.SubjectServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class SubjectController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public SubjectDto create(@RequestBody SubjectDto subjectDto) {
         if (subjectDto.getId() != null) {
             subjectDto.setId(null);
@@ -34,13 +36,15 @@ public class SubjectController {
     }
 
     @PutMapping("/{id}")
-    public SubjectDto update(@RequestParam Long id, @RequestBody SubjectDto subjectDto) {
+    @PreAuthorize("hasRole('ADMIN')")
+    public SubjectDto update(@PathVariable Long id, @RequestBody SubjectDto subjectDto) {
         subjectDto.setId(id);
         return subjectService.save(subjectDto);
     }
 
-    @DeleteMapping()
-    public void delete(@RequestParam Long id) {
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void delete(@PathVariable Long id) {
         subjectService.delete(id);
     }
 }

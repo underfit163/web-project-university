@@ -4,6 +4,7 @@ package com.underfit.trpo.controller;
 import com.underfit.trpo.dto.StudentDto;
 import com.underfit.trpo.service.StudentServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,16 +17,17 @@ public class StudentController {
     private final StudentServiceImpl studentService;
 
     @GetMapping
-    public List<StudentDto> getMarks() {
+    public List<StudentDto> getStudents() {
         return studentService.getAll();
     }
 
     @GetMapping("/{id}")
-    public StudentDto getMark(@PathVariable Long id) {
+    public StudentDto getStudent(@PathVariable Long id) {
         return studentService.getById(id);
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public StudentDto create(@RequestBody StudentDto studentDto) {
         if (studentDto.getId() != null) {
             studentDto.setId(null);
@@ -34,13 +36,15 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public StudentDto update(@RequestParam Long id, @RequestBody StudentDto studentDto) {
+    @PreAuthorize("hasRole('ADMIN')")
+    public StudentDto update(@PathVariable Long id, @RequestBody StudentDto studentDto) {
         studentDto.setId(id);
         return studentService.save(studentDto);
     }
 
-    @DeleteMapping()
-    public void delete(@RequestParam Long id) {
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void delete(@PathVariable Long id) {
         studentService.delete(id);
     }
 }

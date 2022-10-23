@@ -3,6 +3,7 @@ package com.underfit.trpo.controller;
 import com.underfit.trpo.dto.TeacherDto;
 import com.underfit.trpo.service.TeacherServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class TeacherController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public TeacherDto create(@RequestBody TeacherDto teacherDto) {
         if (teacherDto.getId() != null) {
             teacherDto.setId(null);
@@ -33,13 +35,15 @@ public class TeacherController {
     }
 
     @PutMapping("/{id}")
-    public TeacherDto update(@RequestParam Long id, @RequestBody TeacherDto teacherDto) {
+    @PreAuthorize("hasRole('ADMIN')")
+    public TeacherDto update(@PathVariable Long id, @RequestBody TeacherDto teacherDto) {
         teacherDto.setId(id);
         return teacherService.save(teacherDto);
     }
 
-    @DeleteMapping()
-    public void delete(@RequestParam Long id) {
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void delete(@PathVariable Long id) {
         teacherService.delete(id);
     }
 }

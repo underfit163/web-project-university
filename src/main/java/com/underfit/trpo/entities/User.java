@@ -23,13 +23,13 @@ public class User {
     @Column(name = "login", nullable = false, length = 50)
     private String login;
 
-    @Column(name = "password", nullable = false, length = 50)
+    @Column(name = "password", nullable = false, length = 100)
     private String password;
 
     @Column(name = "role")
     private Role role;
 
-    @Column(name = "email", length = 50)
+    @Column(name = "email", length = 100)
     private String email;
 
     public User(String login, String password, Role role, String email) {

@@ -4,7 +4,6 @@ import com.underfit.trpo.entities.Role;
 import com.underfit.trpo.entities.User;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.io.Serializable;
 
