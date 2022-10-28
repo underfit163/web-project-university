@@ -27,8 +27,12 @@ public class MarkDto implements Serializable {
     public static MarkDto toDto(Mark mark) {
         MarkDto markDto = new MarkDto();
         BeanUtils.copyProperties(mark, markDto);
-        markDto.setExamidfk(mark.getExamidfk().getId());
-        markDto.setStudentidfk(mark.getStudentidfk().getId());
+        if (mark.getExamidfk() != null) {
+            markDto.setExamidfk(mark.getExamidfk().getId());
+        }
+        if (mark.getStudentidfk() != null) {
+            markDto.setStudentidfk(mark.getStudentidfk().getId());
+        }
         return markDto;
     }
 }

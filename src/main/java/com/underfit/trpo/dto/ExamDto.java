@@ -31,8 +31,12 @@ public class ExamDto implements Serializable {
     public static ExamDto toDto(Exam exam) {
         ExamDto examDto = new ExamDto();
         BeanUtils.copyProperties(exam, examDto);
-        examDto.setSubjectidfk(exam.getSubjectidfk().getId());
-        examDto.setTeacheridfk(exam.getTeacheridfk().getId());
+        if (exam.getSubjectidfk() != null) {
+            examDto.setSubjectidfk(exam.getSubjectidfk().getId());
+        }
+        if (exam.getTeacheridfk() != null) {
+            examDto.setTeacheridfk(exam.getTeacheridfk().getId());
+        }
         return examDto;
     }
 }

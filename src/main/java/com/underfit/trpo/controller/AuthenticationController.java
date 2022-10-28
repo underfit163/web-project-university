@@ -4,6 +4,7 @@ import com.underfit.trpo.dao.UserRepository;
 import com.underfit.trpo.dto.JwtDto;
 import com.underfit.trpo.dto.LoginDto;
 import com.underfit.trpo.dto.UserDto;
+import com.underfit.trpo.entities.Role;
 import com.underfit.trpo.security.JwtUtils;
 import com.underfit.trpo.service.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -51,6 +52,9 @@ public class AuthenticationController {
             return ResponseEntity
                     .badRequest()
                     .body("Email is already exist!");
+        }
+        if(userDto.getRole() == null) {
+            userDto.setRole(Role.ROLE_USER);
         }
         userDto.setPassword(encoder.encode(userDto.getPassword()));
         userRepository.save(userDto.toEntity());
