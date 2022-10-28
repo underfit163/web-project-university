@@ -1,7 +1,6 @@
 package com.underfit.trpo.controllertest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.underfit.trpo.controller.ExamController;
 import com.underfit.trpo.dto.ExamDto;
 import com.underfit.trpo.service.ExamServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -35,17 +32,14 @@ public class ExamControllerTest {
     // делать ничего не будет)
     private ExamServiceImpl service;
     @Autowired
-    private ExamController controller;
-    @Autowired
     private ObjectMapper objectMapper;
 
     @WithMockUser
     @Test
     public void getExamsTest() throws Exception {
-        List<ExamDto> examDtoList = new ArrayList<>(
-                Arrays.asList(new ExamDto(1L, "экзамен", 54, 1, 1L, 1L),
+        List<ExamDto> examDtoList = List.of(new ExamDto(1L, "экзамен", 54, 1, 1L, 1L),
                         new ExamDto(2L, "экзамен", 48, 2, 1L, 1L),
-                        new ExamDto(3L, "экзамен", 36, 2, 1L, 1L)));
+                        new ExamDto(3L, "экзамен", 36, 2, 1L, 1L));
 
         when(service.getAll()).thenReturn(examDtoList);
         mockMvc.perform(get("/api/v1/exams"))
