@@ -62,8 +62,8 @@ public class ExamServiceImplTest {
     public void saveTest() {
         when(examRepository.save(any(Exam.class))).thenReturn(exam);
         ExamDto examDto = ExamDto.toDto(exam);
-        ExamDto savedExam = examService.save(examDto);
-        Assertions.assertEquals(exam.getId(), savedExam.getId());
+        ExamDto saved = examService.save(examDto);
+        Assertions.assertEquals(exam.getId(), saved.getId());
     }
 
     @Test

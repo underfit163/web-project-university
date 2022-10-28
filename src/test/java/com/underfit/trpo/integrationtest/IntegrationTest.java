@@ -20,7 +20,7 @@ public class IntegrationTest {
     @WithMockUser(roles = "ADMIN")
     @Transactional
     @Test
-    public void testExamTest () {
+    public void testExamTest() {
         List<SubjectDto> subjects = subjectController.getSubjects();
         Assertions.assertEquals(0, subjects.size());
         SubjectDto subjectDto = new SubjectDto();

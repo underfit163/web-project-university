@@ -36,8 +36,10 @@ public class MarkServiceImpl implements UniversityService<MarkDto> {
     @Override
     public MarkDto save(MarkDto dto) {
         Mark mark = dto.toEntity();
-        mark.setExamidfk(examRepository.findById(dto.getExamidfk()).orElseThrow());
-        mark.setStudentidfk(studentRepository.findById(dto.getStudentidfk()).orElseThrow());
+        if (mark.getExamidfk() != null)
+            mark.setExamidfk(examRepository.findById(dto.getExamidfk()).orElseThrow());
+        if (mark.getStudentidfk() != null)
+            mark.setStudentidfk(studentRepository.findById(dto.getStudentidfk()).orElseThrow());
         return MarkDto.toDto(markRepository.save(mark));
     }
 
