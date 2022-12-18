@@ -27,6 +27,14 @@ public class MarkServiceImpl implements UniversityService<MarkDto> {
                 .collect(Collectors.toList());
     }
 
+    public List<MarkDto> getAllByIdExam(Long id) {
+        return markRepository
+                .findAllMarksByIdExam(id).orElseThrow()
+                .stream()
+                .map(MarkDto::toDto)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public MarkDto getById(Long id) {
         Mark mark = markRepository.findById(id).orElse(null);
@@ -36,9 +44,9 @@ public class MarkServiceImpl implements UniversityService<MarkDto> {
     @Override
     public MarkDto save(MarkDto dto) {
         Mark mark = dto.toEntity();
-        if (mark.getExamidfk() != null)
+        if (dto.getExamidfk() != null)
             mark.setExamidfk(examRepository.findById(dto.getExamidfk()).orElseThrow());
-        if (mark.getStudentidfk() != null)
+        if (dto.getStudentidfk() != null)
             mark.setStudentidfk(studentRepository.findById(dto.getStudentidfk()).orElseThrow());
         return MarkDto.toDto(markRepository.save(mark));
     }

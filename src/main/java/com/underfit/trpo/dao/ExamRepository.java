@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ExamRepository extends JpaRepository<Exam, Long> {
-    @Query("FROM Exam e JOIN FETCH e.subjectidfk JOIN FETCH e.teacheridfk")
+    @Query("FROM Exam e LEFT JOIN FETCH e.subjectidfk LEFT JOIN FETCH e.teacheridfk")
     Optional<List<Exam>> findAllExams();
 }

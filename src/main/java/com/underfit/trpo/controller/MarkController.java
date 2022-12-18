@@ -20,6 +20,11 @@ public class MarkController {
         return markService.getAll();
     }
 
+    @GetMapping("/{id}/exam")
+    public List<MarkDto> getMarksByIdExam(@PathVariable Long id) {
+        return markService.getAllByIdExam(id);
+    }
+
     @GetMapping("/{id}")
     public MarkDto getMark(@PathVariable Long id) {
         return markService.getById(id);

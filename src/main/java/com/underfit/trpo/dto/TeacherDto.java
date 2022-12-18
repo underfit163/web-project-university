@@ -1,5 +1,6 @@
 package com.underfit.trpo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.underfit.trpo.entities.Teacher;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 public class TeacherDto implements Serializable {
     private Long id;
     private String fio;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate birthday;
     private String gender;
     private String title;

@@ -16,12 +16,12 @@ public class TeacherController {
     private final TeacherServiceImpl teacherService;
 
     @GetMapping
-    public List<TeacherDto> getSubjects() {
+    public List<TeacherDto> getTeachers() {
         return teacherService.getAll();
     }
 
     @GetMapping("/{id}")
-    public TeacherDto getSubject(@PathVariable Long id) {
+    public TeacherDto getTeacher(@PathVariable Long id) {
         return teacherService.getById(id);
     }
 

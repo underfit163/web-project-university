@@ -35,9 +35,9 @@ public class ExamServiceImpl implements UniversityService<ExamDto> {
     @Override
     public ExamDto save(ExamDto dto) {
         Exam exam = dto.toEntity();
-        if (exam.getTeacheridfk() != null)
+        if (dto.getTeacheridfk() != null)
             exam.setTeacheridfk(teacherRepository.findById(dto.getTeacheridfk()).orElseThrow());
-        if (exam.getSubjectidfk() != null)
+        if (dto.getSubjectidfk() != null)
             exam.setSubjectidfk(subjectRepository.findById(dto.getSubjectidfk()).orElseThrow());
         return ExamDto.toDto(examRepository.save(exam));
     }

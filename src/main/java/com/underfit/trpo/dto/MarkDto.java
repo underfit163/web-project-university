@@ -1,5 +1,6 @@
 package com.underfit.trpo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.underfit.trpo.entities.Mark;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 public class MarkDto implements Serializable {
     private Long id;
     private String evaluation;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate passdate;
     private Long studentidfk;
     private Long examidfk;
