@@ -2,6 +2,7 @@ package com.underfit.trpo.servicetest;
 
 import com.underfit.trpo.dao.MarkRepository;
 import com.underfit.trpo.dto.MarkDto;
+import com.underfit.trpo.entities.Exam;
 import com.underfit.trpo.entities.Mark;
 import com.underfit.trpo.service.MarkServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -57,6 +58,16 @@ public class MarkServiceImplTest {
         when(markRepository.findAllMarks()).thenReturn(Optional.of(list));
         List<MarkDto> examsDto = markService.getAll();
         assertThat(examsDto).hasSize(2);
+    }
+
+    @Test
+    public void getAllByIdTest() {
+        Mark mark1 = new Mark(1L, "4", LocalDate.of(2019, 1, 14), null, new Exam(1L, "Зачет", 24, 2,null, null));
+        List<Mark> list = List.of(mark1);
+        when(markRepository.findAllMarksByIdExam(1L)).thenReturn(Optional.of(list));
+        List<MarkDto> examsDto = markService.getAllByIdExam(1L);
+        assertThat(examsDto).hasSize(1);
+        Assertions.assertEquals("4", examsDto.get(0).getEvaluation());
     }
 
     @Test
