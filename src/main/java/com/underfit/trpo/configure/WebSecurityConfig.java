@@ -65,7 +65,7 @@ public class WebSecurityConfig {
                 ).authorizeRequests(authRequests ->
                         authRequests
                                 .antMatchers("/api/v1/auth/**").permitAll()
-                                .antMatchers("*/*.js", "/favicon.ico").permitAll()//позволяем получать js файлы
+                                .antMatchers("/*.js", "/*.map", "/*.css", "/*.ts", "/*.html","/favicon.ico").permitAll()//позволяем получать js файлы
                                 .antMatchers("/","/home","/login","/logout").permitAll()
                                 .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider());
